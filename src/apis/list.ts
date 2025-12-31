@@ -15,3 +15,34 @@
         url: '/channels',
     })
  }
+
+ type ListItem = {
+    art_id: string,
+    title: string,
+    aut_id: string,
+    comm_count: number,
+    pubdate: string,
+    aut_name: string,
+    is_top: string,
+    cover: {
+      type: number,
+      images:string[]
+    }
+ }
+
+ export type ListRes = {
+    results: ListItem[],
+    pre_timestamp: string
+ }
+
+ type RepParams = {
+    channel_id: string,
+    timestamp: string
+ }
+
+ export function fetchListAPI(params: RepParams){
+    return http.request<ResType<ListRes>>({
+        url: '/articles',
+        params,
+    })
+ }
